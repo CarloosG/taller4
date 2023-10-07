@@ -10,12 +10,6 @@
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">Registro de Usuario</h1>
-                <div class="columns is-5-tablet is-4-desktop is-3-widescreen">
-                    <div class="column">
-                        <form class="box">
-                            <div class="field has-text-centered">
-                                <img src="icons8-usuario-32.png" width="70">
-                            </div>
                     <form id="registroForm" onsubmit="return validarFormulario()" class="box">
                         <div class="field">
                             <label for="nombre" class="label">Nombre:</label>
@@ -73,6 +67,72 @@
                                 <input type="submit" value="Registrar" class="button is-primary">
                             </div>
                         </div>
+            </form>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Registro de Gustos</h1>
+
+            <form id="registroForm">
+                <div class="field">
+                    <label class="label" for="colorFavorito">Color Favorito:</label>
+                    <div class="control">
+                        <input class="input" type="text" id="colorFavorito" name="colorFavorito" disabled>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label" for="marcaFavorita">Marca de Carro Favorita:</label>
+                    <div class="control">
+                        <input class="input" type="text" id="marcaFavorita" name="marcaFavorita" disabled>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label" for="estiloFavorito">Estilo de Carro Favorito:</label>
+                    <div class="control">
+                        <input class="input" type="text" id="estiloFavorito" name="estiloFavorito" disabled>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label" for="modeloFavorito">Modelo de Carro Favorito:</label>
+                    <div class="control">
+                        <input class="input" type="text" id="modeloFavorito" name="modeloFavorito" disabled>
+                    </div>
+                </div>
+
+                <div class="field">
+                  <label class="label" for="precioEquipo">Precio dispuesto a pagar por un automóvil:</label>
+                  <div class="control">
+                      <input class="slider" type="range" id="precioEquipo" name="precioEquipo" min="0." max="50000" step="100" value="0">
+                  </div>
+                  <div class="control">
+                      <output for="precioEquipo" id="precioOutput">0</output>
+                      <label for="precioEquipo">USD</label>
+                  </div>
+              </div>
+
+                <div class="field">
+                    <label class="label">Selecciona una opción:</label>
+                    <div class="control">
+                        <label class="radio">
+                            <input type="radio" name="opcion" value="habilitar" id="habilitarRadio"> Habilitar Registro
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="opcion" value="deshabilitar" id="deshabilitarRadio" checked> Deshabilitar Registro
+                        </label>
+                    </div>
+                </div>
+
+                
+
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-primary" type="reset">Guardar</button>
+                    </div>
+                </div>
             </form>
         </div>
     </section>
@@ -134,6 +194,37 @@
             }
             return true;
         }
+
+            const form = document.getElementById('registroForm');
+            const radioHabilitar = document.getElementById('habilitarRadio');
+            const radioDeshabilitar = document.getElementById('deshabilitarRadio');
+            const campos = document.querySelectorAll('input[type="text"]');
+
+
+            radioHabilitar.addEventListener('change', function() {
+                if (this.checked) {
+                    campos.forEach(function(campo) {
+                        campo.disabled = false;
+                    });
+                }
+            });
+
+
+            radioDeshabilitar.addEventListener('change', function() {
+                if (this.checked) {
+                    campos.forEach(function(campo) {
+                        campo.disabled = true;
+                    });
+                }
+            });
+
+            const slider = document.getElementById('precioEquipo');
+            const output = document.getElementById('precioOutput');
+
+
+            slider.addEventListener('input', function() {
+                output.textContent = this.value;
+            });
     </script>
 </body>
 </html>
